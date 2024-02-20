@@ -1,3 +1,3 @@
 # openAI
-OpenAI串接C-Bot
+OpenAI串接Chat-Bot
 (我的key過期會打不開)
