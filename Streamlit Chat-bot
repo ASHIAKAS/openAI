@@ -7,8 +7,8 @@ with st.chat_message("assistant"):
     st.text("Hi there!")
 
 #宣告API key
-openai.organization="org-CEvyQpc25hBzaUXwcUQtvRTt"
 openai.api_key="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"
+
 # 初始化 session state 變數
 if 'message_list' not in st.session_state:
     st.session_state['message_list'] = []
