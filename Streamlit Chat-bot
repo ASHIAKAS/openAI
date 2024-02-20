@@ -1,0 +1,33 @@
+import streamlit as st
+import openai
+
+st.title('little ChatBOT')
+
+with st.chat_message("assistant"):
+    st.text("Hi there!")
+
+#宣告API key
+openai.organization="org-CEvyQpc25hBzaUXwcUQtvRTt"
+openai.api_key="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"
+# 初始化 session state 變數
+if 'message_list' not in st.session_state:
+    st.session_state['message_list'] = []
+
+user_input = st.chat_input("Please enter your message")
+
+if user_input:
+    print(user_input)
+    st.session_state['message_list'].append({'role': 'user', 'content': user_input})
+
+    # 呼叫 API
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=st.session_state['message_list']
+    )
+
+    assistant_response = response.choices[0].message['content']
+    st.session_state['message_list'].append({'role': 'assistant', 'content': assistant_response})
+
+for message in st.session_state['message_list']:
+    with st.chat_message(message['role']):
+        st.text(message['content'])
